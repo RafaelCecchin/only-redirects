@@ -25,7 +25,8 @@ services:
     networks:
       - or-net
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: laravel
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
 networks:
   or-net:
