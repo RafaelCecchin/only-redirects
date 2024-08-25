@@ -1,21 +1,23 @@
 FROM php:8.3-apache
 
-# Atualize os pacotes e instale as dependências
 RUN apt-get update \
     && apt-get install -y \
         unzip \
         git \
         libpq-dev \
-    && docker-php-ext-install pdo_pgsql
-
-# Configure o DocumentRoot para o diretório 'public'
+        libicu-dev \
+        libzip-dev \
+    && docker-php-ext-install \
+        pdo_pgsql \
+        intl \
+        zip \
+    && docker-php-ext-enable intl zip
+    
 RUN sed -i -e 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-# Instale o Composer
 RUN cd /usr/local/bin \
     && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
-# Exponha a porta 80
 EXPOSE 80
