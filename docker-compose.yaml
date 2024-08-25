@@ -24,6 +24,8 @@ services:
       - ./data:/var/lib/postgresql/data
     networks:
       - or-net
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: laravel
       POSTGRES_PASSWORD: ${DB_PASSWORD}
