@@ -1,6 +1,8 @@
-# Only redirects
+# Only Redirects ➡️
 
-Init project
-```bash
-docker run --rm -v $(pwd):/app composer create-project --prefer-dist laravel/laravel only-redirects
-```
+O objetivo desse projeto é permitir que os usuários cadastrem direcionamentos.
+Para funcionar, o DNS deve apontar para o IP do servidor que vai rodar o projeto.
+
+⚠️ **Obs:** Sistema em desenvolvimento.
+
+![Only Redirects](https://github.com/RafaelCecchin/only-redirects/blob/master/screenshot.png?raw=true)
