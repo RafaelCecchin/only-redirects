@@ -1,0 +1,16 @@
+FROM php:8.3-apache
+
+RUN apt-get update \
+    && apt-get install unzip -y \
+    && apt-get install git -y
+
+RUN sed -i -e 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
+RUN cd ~ \
+    && mkdir composer \
+    && cd composer \
+    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php composer-setup.php \
+    && php -r "unlink('composer-setup.php');" \
+    && mv composer.phar composer \
+    && export PATH="$PWD:$PATH"

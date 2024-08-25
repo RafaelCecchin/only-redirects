@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  
+  php-apache:
+    build:
+      context: .
+      dockerfile: dockerfile.php-apache
+    container_name: or-php-apache
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - or-net
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    container_name: or-postgres
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - or-net
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+networks:
+  or-net:
+    driver: bridge
