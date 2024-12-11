@@ -8,7 +8,8 @@ services:
       dockerfile: dockerfile.php-apache
     container_name: or-php-apache
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www/html:cached
+      - /var/www/html/vendor
     networks:
       - or-net
     ports:

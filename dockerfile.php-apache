@@ -22,4 +22,11 @@ RUN cd /usr/local/bin \
 
 RUN a2enmod rewrite
 
+COPY . /var/www/html
+
+COPY ./composer.json /var/www/html/
+COPY ./composer.lock /var/www/html/
+
+RUN composer install --no-interaction
+
 EXPOSE 80
