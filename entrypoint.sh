@@ -6,6 +6,7 @@ chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 composer install --no-interaction --optimize-autoloader
 php artisan migrate
+php artisan db:seed
 php artisan key:generate
 
 apache2-foreground
